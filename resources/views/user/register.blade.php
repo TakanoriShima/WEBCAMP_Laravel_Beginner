@@ -2,24 +2,20 @@
 
 {{-- メインコンテンツ --}}
 @section('contents')
-        <h1>ログイン</h1>
+        <h1>ユーザ登録</h1>
         @if ($errors->any())
             <div>
             @foreach ($errors->all() as $error)
                 {{ $error }}<br>
             @endforeach
             </div>
-        @endif   
-        
-        @if (session('front.user_register_success') == true)
-            ユーザを登録しました！！<br>
         @endif
-
-        <form action="/login" method="post">
+        <form action="/user/register" method="post">
             @csrf
+            名前：<input type="text" name="name" value="{{ old('name') }}"><br>
             email：<input type="text" name="email" value="{{ old('email') }}"><br>
             パスワード：<input type="password" name="password"><br>
-            <button>ログインする</button>
+            <button class="btn btn-primary mb-3">登録する</button>
         </form>
-        <a href="{{ route('user.index') }}">会員登録</a>
-@endsection        
+    </body>
+@endsection
